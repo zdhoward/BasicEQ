@@ -2,7 +2,9 @@
 
 <JUCERPROJECT id="TuqQvf" name="BasicEQ" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              cppLanguageStandard="17">
+              cppLanguageStandard="17" companyName="ZxTools" pluginManufacturerCode="Zdsp"
+              pluginCode="Baeq" pluginDesc="A Basic EQ" pluginRTASCategory="1"
+              pluginAAXCategory="1" pluginVST3Category="EQ" version="0.1.0">
   <MAINGROUP id="V5F95l" name="BasicEQ">
     <GROUP id="{F48518F8-2223-34AD-0269-30BA38F82867}" name="Source">
       <FILE id="ZgK6Kl" name="PluginProcessor.cpp" compile="1" resource="0"
