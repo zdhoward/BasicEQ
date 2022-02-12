@@ -13,12 +13,12 @@
 
 struct LookAndFeel : juce::LookAndFeel_V4
 {
-	void drawRotarySlider (juce::Graphics& g,
+	void drawRotarySlider(juce::Graphics& g,
 		int x, int y, int width, int height,
 		float sliderPosProportional,
 		float rotaryStartAngle,
 		float rotaryEndAngle,
-		juce::Slider&) override {}
+		juce::Slider&) override;
 };
 
 struct RotarySliderWithLabels : juce::Slider
@@ -37,7 +37,7 @@ struct RotarySliderWithLabels : juce::Slider
 		setLookAndFeel(nullptr);
 	}
 
-	void paint(juce::Graphics& g) override {}
+	void paint(juce::Graphics& g) override;
 	juce::Rectangle<int> getSliderBounds() const;
 	int getTextHeight() const { return 14; }
 	juce::String getDisplayString() const;
@@ -88,14 +88,26 @@ private:
 	// access the processor object that created it.
 	BasicEQAudioProcessor& audioProcessor;
 
-	RotarySliderWithLabels peakFreqSlider, peakGainSlider, peakQualitySlider, lowCutFreqSlider, highCutFreqSlider, lowCutSlopeSlider, highCutSlopeSlider;
+	RotarySliderWithLabels peakFreqSlider, 
+		peakGainSlider, 
+		peakQualitySlider, 
+		lowCutFreqSlider, 
+		highCutFreqSlider, 
+		lowCutSlopeSlider, 
+		highCutSlopeSlider;
 
 	ResponseCurveComponent responseCurveComponent;
 
 	using APVTS = juce::AudioProcessorValueTreeState;
 	using Attachment = APVTS::SliderAttachment;
 
-	Attachment peakFreqSliderAttachment, peakGainSliderAttachment, peakQualitySliderAttachment, lowCutFreqSliderAttachment, highCutFreqSliderAttachment, lowCutSlopeSliderAttachment, highCutSlopeSliderAttachment;
+	Attachment peakFreqSliderAttachment, 
+		peakGainSliderAttachment, 
+		peakQualitySliderAttachment, 
+		lowCutFreqSliderAttachment, 
+		highCutFreqSliderAttachment, 
+		lowCutSlopeSliderAttachment, 
+		highCutSlopeSliderAttachment;
 
 	std::vector<juce::Component*> getComps();
 
