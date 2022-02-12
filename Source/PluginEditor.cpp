@@ -230,7 +230,6 @@ void ResponseCurveComponent::paint(juce::Graphics& g)
 
     g.drawImage(background, getLocalBounds().toFloat());
 
-    //auto bounds = getLocalBounds();
     auto responseArea = getAnalysisArea(); //getRenderArea();//getLocalBounds();//bounds.removeFromTop(bounds.getHeight() * 0.33);
 
     auto w = responseArea.getWidth();
@@ -345,8 +344,6 @@ void ResponseCurveComponent::resized()
         g.drawHorizontalLine(y, left, right);
     }
 
-    //g.drawRect(getAnalysisArea());
-
     g.setColour(Colours::lightgrey);
     const int fontHeight = 10;
     g.setFont(fontHeight);
@@ -376,6 +373,35 @@ void ResponseCurveComponent::resized()
         r.setCentre(x, 0);
         r.setY(1);
 
+        g.drawFittedText(str, r, juce::Justification::centred, 1);
+    }
+
+    for (auto gDb : gain)
+    {
+        auto y = jmap(gDb, -24.f, 24.f, float(bottom), float(top));
+
+        String str;
+        if (gDb > 0)
+            str << "+";
+        str << gDb;
+
+        auto textWidth = g.getCurrentFont().getStringWidth(str);
+
+        Rectangle<int> r;
+        r.setSize(textWidth, fontHeight);
+        r.setX(getWidth() - textWidth);
+        r.setCentre(r.getCentreX(), y);
+
+        g.setColour(gDb == 0.f ? Colour(0u, 172u, 1u) : Colours::lightgrey);
+        g.drawFittedText(str, r, juce::Justification::centred, 1);
+
+        str.clear();
+        str << (gDb - 24.f);
+
+        r.setX(1);
+        textWidth = g.getCurrentFont().getStringWidth(str);
+        r.setSize(textWidth, fontHeight);
+        g.setColour(Colours::lightgrey);
         g.drawFittedText(str, r, juce::Justification::centred, 1);
     }
 }
